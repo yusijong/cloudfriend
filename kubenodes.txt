@@ -1,0 +1,19 @@
+192.168.122.151 master.example.com
+192.168.122.152 node1.example.com
+192.168.122.153 node2.example.com
+192.168.122.154 node3.example.com
+
+ssh-keygen
+ssh-keygen -R ip주소 (인증키 에러시)
+ssh-copy-id
+
+vi /etc/sysconfig/network-scripts/ifcfg-ens1
+BOOTPROTO="static"
+IPADDR="192.168.122.153"
+NETMASK="255.255.255.0"
+GATEWAY="192.168.122.1"
+DNS1="168.126.63.1"
+DNS2="168.126.63.2"
+
+kubeadm join 192.168.122.151:6443 --token qp7hob.4gun361pfco5y6ju \
+    --discovery-token-ca-cert-hash sha256:d4eef31bc27b1ced33f1b2d082142241b8e90c6355ee6f752612ae53abb57f03
